@@ -3,29 +3,35 @@
   "version": "0.0.1",
   "description": "",
   "main": "index.js",
+  "bin": {
+    "dropbear": "bin/dropbear"
+  },
   "scripts": {
-    "start": "babel-node src/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "babel-node src/repl.js",
+    "test": "jest"
   },
   "keywords": [],
   "author": "Steve Kinney <hello@stevekinney.net> (https://stevekinney.net)",
   "license": "MIT",
   "dependencies": {
     "@babel/core": "^7.4.5",
+    "@babel/generator": "^7.4.4",
     "@babel/node": "^7.4.5",
     "@babel/plugin-proposal-export-default-from": "^7.2.0",
     "@babel/plugin-transform-modules-commonjs": "^7.4.4",
     "chalk": "^2.4.2",
     "inquirer": "^6.3.1",
-    "lodash": "^4.17.11"
+    "lodash": "^4.17.11",
+    "minimist": "^1.2.0"
   },
   "devDependencies": {
     "babel-jest": "^24.8.0",
-    "jest": "^24.8.0"
+    "jest": "^24.8.0",
+    "mock-fs": "^4.10.0"
   },
   "jest": {
     "transform": {
-      "^.+\\.tsx?$": "babel-jest"
+      "^.+\\.jsx?$": "babel-jest"
     },
     "testRegex": "^.+\\.test.jsx?$",
     "moduleFileExtensions": [
