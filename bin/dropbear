@@ -1,13 +1,13 @@
 #!/usr/bin/env node
 
-const { parseAndEvaluate } = require('../second-pass/parse-and-evaluate');
+const { parseAndEvaluate } = require('../src/parse-and-evaluate');
 
 const fs = require('fs');
 
 const [command, ...args] = process.argv.slice(2);
 
 if (!command) {
-  const repl = require('../second-pass/repl');
+  const repl = require('../src/repl');
   return repl();
 }
 
