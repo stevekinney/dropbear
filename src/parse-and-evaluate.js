@@ -3,10 +3,12 @@ const { parse } = require('./parse');
 const { evaluate } = require('./evaluate');
 const { log, pipe } = require('./utilities');
 const { parseProgram } = require('./parse-program');
+const { transform } = require('./transform');
 
 const parseAndEvaluate = pipe(
   tokenize,
   parse,
+  transform,
   evaluate,
 );
 

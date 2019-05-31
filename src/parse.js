@@ -41,10 +41,6 @@ const parse = tokens => {
       arguments: args,
     };
 
-    if (specialForms[node.name]) {
-      return specialForms[node.name](node);
-    }
-
     return node;
   }
 };
@@ -61,3 +57,16 @@ const parseProgram = (tokens, body = []) => {
 };
 
 module.exports = { parse };
+
+ast = {
+  type: 'CallExpression',
+  name: 'lambda',
+  args: [
+    { type: 'CallExpression', name: 'x', args: [] },
+    {
+      type: 'CallExpression',
+      name: 'multiply',
+      args: [{ type: 'Name', value: 'x' }, { type: 'Name', value: 'x' }],
+    },
+  ],
+};
