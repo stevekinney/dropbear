@@ -27,10 +27,10 @@ const createNumericLiteral = createLiteral('NumericLiteral');
 
 const createStringLiteral = createLiteral('StringLiteral');
 
-const createCallExpression = token => ({
+const createCallExpression = (identifier, args) => ({
   type: 'CallExpression',
-  name: token.value,
-  arguments: [],
+  name: identifier.name,
+  arguments: args,
 });
 
 const createIdentifier = token => ({
@@ -56,17 +56,19 @@ const parse = tokens => {
   if (isOpeningParenthesisToken(token)) {
     if (!isNameToken(peek(tokens))) return;
 
-    const node = createCallExpression(pop(tokens));
+    const expressionTokens = [];
 
     while (!isClosingParenthesisToken(peek(tokens))) {
-      node.arguments.push(parse(tokens));
+      expressionTokens.push(parse(tokens));
     }
 
-    if (specialForms[node.name]) {
-      return specialForms[node.name](node);
+    const [name, ...args] = expressionTokens;
+
+    if (specialForms[name]) {
+      return specialForms[name](args);
     }
 
-    return node;
+    return createCallExpression(name, args);
   }
 
   throw new TypeError(`Unknown identifier: "${token.value}"`);

@@ -20,6 +20,7 @@ describe(parse, () => {
     };
 
     const result = parse(tokens);
+
     expect(result).toEqual(ast);
   });
 
