@@ -2,6 +2,7 @@ const { tokenize } = require('./tokenize');
 const { parse } = require('./parse');
 const { evaluate } = require('./evaluate');
 const { log, pipe } = require('./utilities');
+const { parseProgram } = require('./parse-program');
 
 const parseAndEvaluate = pipe(
   tokenize,
@@ -14,4 +15,14 @@ const tokenizeAndParse = pipe(
   parse,
 );
 
-module.exports = { parseAndEvaluate, tokenizeAndParse };
+const parseAndEvaluateProgram = pipe(
+  tokenize,
+  parseProgram,
+  evaluate,
+);
+
+module.exports = {
+  parseAndEvaluate,
+  tokenizeAndParse,
+  parseAndEvaluateProgram,
+};
