@@ -6,9 +6,6 @@ const {
   isQuote,
 } = require('./identify');
 
-const peek = array => array[0];
-const pop = array => array.shift();
-
 const tokenize = input => {
   const tokens = [];
   let cursor = 0;
