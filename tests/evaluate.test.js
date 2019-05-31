@@ -56,7 +56,7 @@ describe(evaluate, () => {
     expect(evaluate(ast)).toBe(Math.PI);
   });
 
-  it.skip('should be able to highest number in a range', () => {
+  it('should be able to highest number in a range', () => {
     const ast = {
       type: 'CallExpression',
       name: 'max',
