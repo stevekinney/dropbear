@@ -1,43 +1,46 @@
+const { isOpeningParenthesis, isClosingParenthesis } = require('./identify');
 const { specialForms } = require('./special-forms');
 const { peek, pop } = require('./utilities');
 
-const parse = () => {};
+const parse = tokens => {
+  const token = pop(tokens);
+
+  if (token.type === 'Number') {
+    return {
+      type: 'NumericLiteral',
+      value: token.value,
+    };
+  }
+
+  if (token.type === 'String') {
+    return {
+      type: 'StringLiteral',
+      value: token.value,
+    };
+  }
+
+  if (token.type === 'Name') {
+    return {
+      type: 'Identifier',
+      name: token.value,
+    };
+  }
+
+  if (isOpeningParenthesis(token.value)) {
+    const expressionTokens = [];
+
+    while (!isClosingParenthesis(peek(tokens).value)) {
+      expressionTokens.push(parse(tokens));
+    }
+
+    const [identifier, ...args] = expressionTokens;
+
+    return {
+      type: 'CallExpression',
+      name: identifier.name,
+      arguments: args,
+    };
+  }
+};
 
 module.exports = { parse };
-
-/* Helpers */
-
-const isType = type => token => token.type === type;
-
-const isParenthesisToken = isType('Parenthesis');
-const isNumberToken = isType('Number');
-const isStringToken = isType('String');
-const isNameToken = isType('Name');
-
-const isOpeningParenthesisToken = token => {
-  return token && isParenthesisToken(token) && token.value === '(';
-};
-
-const isClosingParenthesisToken = token => {
-  return token && isParenthesisToken(token) && token.value === ')';
-};
-
-const createLiteral = type => ({ value }) => ({
-  type,
-  value,
-});
-
-const createNumericLiteral = createLiteral('NumericLiteral');
-
-const createStringLiteral = createLiteral('StringLiteral');
-
-const createCallExpression = (identifier, args) => ({
-  type: 'CallExpression',
-  name: identifier.name,
-  arguments: args,
-});
-
-const createIdentifier = token => ({
-  type: 'Identifier',
-  name: token.value,
-});
