@@ -2,7 +2,7 @@ const { specialForms } = require('../src/special-forms');
 
 describe('specialForms', () => {
   describe('define', () => {
-    it.skip('should transform a call expression into a variable declaration', () => {
+    it('should transform a call expression into a variable declaration', () => {
       const callExpression = {
         type: 'CallExpression',
         name: 'define',
