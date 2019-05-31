@@ -12,7 +12,6 @@ const environment = (exports.environment = {
     return last(args);
   },
   define(identifier, value) {
-    console.log({ identifier, value });
     environment[identifier] = value;
     console.log(environment);
   },

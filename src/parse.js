@@ -1,3 +1,5 @@
+const { specialForms } = require('./parse-special-forms');
+
 const peek = array => array[0];
 const pop = array => array.shift();
 
@@ -22,11 +24,18 @@ const createLiteral = type => ({ value }) => ({
 });
 
 const createNumericLiteral = createLiteral('NumericLiteral');
+
 const createStringLiteral = createLiteral('StringLiteral');
+
 const createCallExpression = token => ({
   type: 'CallExpression',
   name: token.value,
   arguments: [],
+});
+
+const createIdentifier = token => ({
+  type: 'Identifier',
+  name: token.value,
 });
 
 const parse = tokens => {
@@ -40,6 +49,10 @@ const parse = tokens => {
     return createStringLiteral(token);
   }
 
+  if (isNameToken(token)) {
+    return createIdentifier(token);
+  }
+
   if (isOpeningParenthesisToken(token)) {
     if (!isNameToken(peek(tokens))) return;
 
@@ -47,6 +60,10 @@ const parse = tokens => {
 
     while (!isClosingParenthesisToken(peek(tokens))) {
       node.arguments.push(parse(tokens));
+    }
+
+    if (specialForms[node.name]) {
+      return specialForms[node.name](node);
     }
 
     return node;
