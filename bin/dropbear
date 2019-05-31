@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const { parseAndEvaluate } = require('../src/parse-and-evaluate');
+const { parseAndEvaluate } = require('../src');
 
 const fs = require('fs');
 
