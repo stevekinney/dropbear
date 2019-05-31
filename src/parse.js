@@ -2,8 +2,34 @@ const { isOpeningParenthesis, isClosingParenthesis } = require('./identify');
 const { specialForms } = require('./special-forms');
 const { peek, pop } = require('./utilities');
 
-const parse = tokens => {
+const parenthesize = tokens => {
   const token = pop(tokens);
+
+  if (isOpeningParenthesis(token.value)) {
+    const expression = [];
+
+    while (!isClosingParenthesis(peek(tokens).value)) {
+      expression.push(parenthesize(tokens));
+    }
+
+    pop(tokens);
+    return expression;
+  }
+
+  return token;
+};
+
+const parse = tokens => {
+  if (Array.isArray(tokens)) {
+    const [first, ...rest] = tokens;
+    return {
+      type: 'CallExpression',
+      name: first.value,
+      arguments: rest.map(parse),
+    };
+  }
+
+  let token = tokens;
 
   if (token.type === 'Number') {
     return {
@@ -25,48 +51,6 @@ const parse = tokens => {
       name: token.value,
     };
   }
-
-  if (isOpeningParenthesis(token.value)) {
-    const expressionTokens = [];
-
-    while (!isClosingParenthesis(peek(tokens).value)) {
-      expressionTokens.push(parse(tokens));
-    }
-
-    const [identifier, ...args] = expressionTokens;
-
-    const node = {
-      type: 'CallExpression',
-      name: identifier.name,
-      arguments: args,
-    };
-
-    return node;
-  }
 };
 
-const parseProgram = (tokens, body = []) => {
-  if (!tokens.length)
-    return {
-      type: 'Program',
-      body,
-    };
-  const node = parse(tokens);
-  if (node) body.push(node);
-  return parseProgram(tokens, body);
-};
-
-module.exports = { parse };
-
-ast = {
-  type: 'CallExpression',
-  name: 'lambda',
-  args: [
-    { type: 'CallExpression', name: 'x', args: [] },
-    {
-      type: 'CallExpression',
-      name: 'multiply',
-      args: [{ type: 'Name', value: 'x' }, { type: 'Name', value: 'x' }],
-    },
-  ],
-};
+module.exports = { parse: tokens => parse(parenthesize(tokens)) };
