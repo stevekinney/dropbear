@@ -1,7 +1,7 @@
 import { parse } from '../src/parse';
 
 describe(parse, () => {
-  it.skip('should return a token with the type of NumericLiteral for number tokens', () => {
+  it('should return a token with the type of NumericLiteral for number tokens', () => {
     const tokens = [{ type: 'Number', value: 2 }];
 
     const ast = { type: 'NumericLiteral', value: 2 };
