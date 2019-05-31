@@ -1,7 +1,7 @@
 const { transform } = require('../src/transform.js');
 
 describe(transform, () => {
-  it('should transform a "define" function to a variable declaration', () => {
+  it.skip('should transform a "define" function to a variable declaration', () => {
     const callExpression = {
       type: 'CallExpression',
       name: 'define',

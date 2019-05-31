@@ -7,7 +7,7 @@
     "dropbear": "bin/dropbear"
   },
   "scripts": {
-    "start": "babel-node src/repl.js",
+    "start": "node src/repl.js",
     "test": "jest"
   },
   "keywords": [],

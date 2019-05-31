@@ -15,9 +15,6 @@ const environment = {
   modulo,
   log,
   pi: Math.PI,
-  max(...args) {
-    return Math.max(...args);
-  },
 };
 
 module.exports = { environment };

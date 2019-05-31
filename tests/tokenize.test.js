@@ -1,11 +1,11 @@
 import { tokenize } from '../src/tokenize';
 
 describe(tokenize, () => {
-  it('should return an array', () => {
+  it.skip('should return an array', () => {
     expect(Array.isArray(tokenize(''))).toBe(true);
   });
 
-  it('should be able to tokenize a pair of parentheses', () => {
+  it.skip('should be able to tokenize a pair of parentheses', () => {
     const input = '()';
     const result = [
       { type: 'Parenthesis', value: '(' },
@@ -15,7 +15,7 @@ describe(tokenize, () => {
     expect(tokenize(input)).toEqual(result);
   });
 
-  it('should ignore whitespace completely', () => {
+  it.skip('should ignore whitespace completely', () => {
     const input = '                  ';
     const result = [];
 
@@ -23,14 +23,14 @@ describe(tokenize, () => {
   });
 
   // Exercise 1 - Begin
-  it('should correctly tokenize a single digit', () => {
+  it.skip('should correctly tokenize a single digit', () => {
     const input = '2';
     const result = [{ type: 'Number', value: 2 }];
 
     expect(tokenize(input)).toEqual(result);
   });
 
-  it('should be able to handle single numbers in expressions', () => {
+  it.skip('should be able to handle single numbers in expressions', () => {
     const input = '(1 2)';
 
     const result = [
@@ -43,7 +43,7 @@ describe(tokenize, () => {
     expect(tokenize(input)).toEqual(result);
   });
 
-  it('should be able to handle single letters in expressions', () => {
+  it.skip('should be able to handle single letters in expressions', () => {
     const input = '(a b)';
 
     const result = [
@@ -57,7 +57,7 @@ describe(tokenize, () => {
   });
   // Exercise 1: End
 
-  it('should be able to handle multiple-digit numbers', () => {
+  it.skip('should be able to handle multiple-digit numbers', () => {
     const input = '(11 22)';
 
     const result = [
@@ -71,7 +71,7 @@ describe(tokenize, () => {
   });
 
   // Exercise 2 Begin
-  it('should correctly tokenize a simple expression', () => {
+  it.skip('should correctly tokenize a simple expression', () => {
     const input = '(add 2 3)';
     const result = [
       { type: 'Parenthesis', value: '(' },
@@ -84,7 +84,7 @@ describe(tokenize, () => {
     expect(tokenize(input)).toEqual(result);
   });
 
-  it('should ignore whitespace', () => {
+  it.skip('should ignore whitespace', () => {
     const input = '   (add    2 3)';
     const result = [
       { type: 'Parenthesis', value: '(' },
@@ -98,7 +98,7 @@ describe(tokenize, () => {
   });
   // Exercise 2 End
 
-  it('should know about strings', () => {
+  it.skip('should know about strings', () => {
     const input = '(log "hello" "world")';
     const result = [
       { type: 'Parenthesis', value: '(' },

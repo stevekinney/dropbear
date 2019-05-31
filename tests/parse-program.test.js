@@ -1,7 +1,7 @@
 const { parseProgram } = require('../src/parse-program');
 
 describe(parseProgram, () => {
-  it('should return a program node', () => {
+  it.skip('should return a program node', () => {
     const tokens = [
       { type: 'Parenthesis', value: '(' },
       { type: 'Name', value: 'define' },
@@ -18,7 +18,7 @@ describe(parseProgram, () => {
     expect(parseProgram(tokens).type).toBe('Program');
   });
 
-  it('should have an array of expressions', () => {
+  it.skip('should have an array of expressions', () => {
     const tokens = [
       { type: 'Parenthesis', value: '(' },
       { type: 'Name', value: 'define' },
