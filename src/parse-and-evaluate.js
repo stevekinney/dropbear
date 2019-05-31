@@ -8,7 +8,6 @@ const { transform } = require('./transform');
 const parseAndEvaluate = pipe(
   tokenize,
   parse,
-  transform,
   evaluate,
 );
 
