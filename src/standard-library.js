@@ -8,13 +8,6 @@ const modulo = all((a, b) => a % b);
 const log = console.log;
 
 const environment = (exports.environment = {
-  begin(...args) {
-    return last(args);
-  },
-  define(identifier, value) {
-    environment[identifier] = value;
-    console.log(environment);
-  },
   add,
   subtract,
   multiply,
