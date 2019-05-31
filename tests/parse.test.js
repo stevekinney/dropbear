@@ -1,6 +1,6 @@
 import { parse } from '../src/parse';
 
-describe.skip(parse, () => {
+describe(parse, () => {
   it('it should return an AST for a basic data structure', () => {
     const tokens = [
       { type: 'Parenthesis', value: '(' },

@@ -1,6 +1,6 @@
 const { traverse } = require('../src/traverse');
 
-describe.skip(traverse, () => {
+describe(traverse, () => {
   it('should travel to all the nodes in the tree', () => {
     const ast = {
       type: 'CallExpression',

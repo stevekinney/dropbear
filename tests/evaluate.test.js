@@ -1,6 +1,6 @@
 import { evaluate } from '../src/evaluate';
 
-describe.skip(evaluate, () => {
+describe(evaluate, () => {
   it('should be able to evaluate a single expression', () => {
     const ast = {
       type: 'CallExpression',

@@ -1,6 +1,6 @@
 import { tokenize } from '../src/tokenize';
 
-describe.skip(tokenize, () => {
+describe(tokenize, () => {
   it('should correctly tokenize a simple expression', () => {
     const input = '(add 2 3)';
     const result = [

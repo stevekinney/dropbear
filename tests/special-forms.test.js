@@ -1,6 +1,6 @@
 const { specialForms } = require('../src/special-forms');
 
-describe.skip('specialForms', () => {
+describe('specialForms', () => {
   describe('define', () => {
     it('should transform a call expression into a variable declaration', () => {
       const callExpression = {

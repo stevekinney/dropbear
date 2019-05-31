@@ -1,7 +1,41 @@
 const { specialForms } = require('./special-forms');
 const { peek, pop } = require('./utilities');
 
-const parse = () => {};
+const parse = tokens => {
+  let token = pop(tokens);
+
+  if (isNumberToken(token)) {
+    return createNumericLiteral(token);
+  }
+
+  if (isStringToken(token)) {
+    return createStringLiteral(token);
+  }
+
+  if (isNameToken(token)) {
+    return createIdentifier(token);
+  }
+
+  if (isOpeningParenthesisToken(token)) {
+    if (!isNameToken(peek(tokens))) return;
+
+    const expressionTokens = [];
+
+    while (!isClosingParenthesisToken(peek(tokens))) {
+      expressionTokens.push(parse(tokens));
+    }
+
+    const [name, ...args] = expressionTokens;
+
+    if (specialForms[name]) {
+      return specialForms[name](args);
+    }
+
+    return createCallExpression(name, args);
+  }
+
+  throw new TypeError(`Unknown identifier: "${token.value}"`);
+};
 
 module.exports = { parse };
 
