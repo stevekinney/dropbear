@@ -23,14 +23,14 @@ describe(tokenize, () => {
   });
 
   // Exercise 1 - Begin
-  it.skip('should correctly tokenize a single digit', () => {
+  it('should correctly tokenize a single digit', () => {
     const input = '2';
     const result = [{ type: 'Number', value: 2 }];
 
     expect(tokenize(input)).toEqual(result);
   });
 
-  it.skip('should be able to handle single numbers in expressions', () => {
+  it('should be able to handle single numbers in expressions', () => {
     const input = '(1 2)';
 
     const result = [
@@ -43,7 +43,7 @@ describe(tokenize, () => {
     expect(tokenize(input)).toEqual(result);
   });
 
-  it.skip('should be able to handle single letters in expressions', () => {
+  it('should be able to handle single letters in expressions', () => {
     const input = '(a b)';
 
     const result = [
@@ -57,7 +57,7 @@ describe(tokenize, () => {
   });
   // Exercise 1: End
 
-  it.skip('should be able to handle multiple-digit numbers', () => {
+  it('should be able to handle multiple-digit numbers', () => {
     const input = '(11 22)';
 
     const result = [

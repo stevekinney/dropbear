@@ -26,6 +26,32 @@ const tokenize = input => {
       cursor++;
       continue;
     }
+
+    if (isNumber(character)) {
+      let number = character;
+
+      while (isNumber(input[++cursor])) {
+        number += input[cursor];
+      }
+
+      tokens.push({
+        type: 'Number',
+        value: parseInt(number, 10),
+      });
+
+      continue;
+    }
+
+    if (isLetter(character)) {
+      tokens.push({
+        type: 'Name',
+        value: character,
+      });
+      cursor++;
+      continue;
+    }
+
+    throw new Error(`${character} is not valid`);
   }
 
   return tokens;
