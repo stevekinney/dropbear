@@ -1,7 +1,7 @@
 import { tokenize } from '../src/tokenize';
 
 describe(tokenize, () => {
-  it('should correctly tokenize a simple expression', () => {
+  it.skip('should correctly tokenize a simple expression', () => {
     const input = '(add 2 3)';
     const result = [
       { type: 'Parenthesis', value: '(' },
@@ -14,7 +14,7 @@ describe(tokenize, () => {
     expect(tokenize(input)).toEqual(result);
   });
 
-  it('should correctly tokenize a single digit', () => {
+  it.skip('should correctly tokenize a single digit', () => {
     const input = '2';
     const result = [{ type: 'Number', value: 2 }];
 
@@ -28,14 +28,14 @@ describe(tokenize, () => {
     expect(tokenize(input)).toEqual(result);
   });
 
-  it('should return an empty array for only whitespace', () => {
+  it.skip('should return an empty array for only whitespace', () => {
     const input = '        ';
     const result = [];
 
     expect(tokenize(input)).toEqual(result);
   });
 
-  it('should ignore whitespace', () => {
+  it.skip('should ignore whitespace', () => {
     const input = '   (add    2 3)';
     const result = [
       { type: 'Parenthesis', value: '(' },
@@ -48,7 +48,7 @@ describe(tokenize, () => {
     expect(tokenize(input)).toEqual(result);
   });
 
-  it('should know about strings', () => {
+  it.skip('should know about strings', () => {
     const input = '(log "hello" "world")';
     const result = [
       { type: 'Parenthesis', value: '(' },

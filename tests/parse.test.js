@@ -1,7 +1,7 @@
 import { parse } from '../src/parse';
 
 describe(parse, () => {
-  it('it should return an AST for a basic data structure', () => {
+  it.skip('should return an AST for a basic data structure', () => {
     const tokens = [
       { type: 'Parenthesis', value: '(' },
       { type: 'Name', value: 'add' },
@@ -24,7 +24,7 @@ describe(parse, () => {
     expect(result).toEqual(ast);
   });
 
-  it('it should return an AST for a nested data structure', () => {
+  it.skip('should return an AST for a nested data structure', () => {
     const tokens = [
       { type: 'Parenthesis', value: '(' },
       { type: 'Name', value: 'add' },

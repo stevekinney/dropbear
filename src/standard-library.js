@@ -7,14 +7,7 @@ const divide = all((a, b) => a / b);
 const modulo = all((a, b) => a % b);
 const log = console.log;
 
-const environment = (exports.environment = {
-  begin(...args) {
-    return last(args);
-  },
-  define(identifier, value) {
-    environment[identifier] = value;
-    console.log(environment);
-  },
+const environment = {
   add,
   subtract,
   multiply,
@@ -22,6 +15,6 @@ const environment = (exports.environment = {
   modulo,
   log,
   pi: Math.PI,
-});
+};
 
-module.exports = environment;
+module.exports = { environment };
