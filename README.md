@@ -1,4 +1,4 @@
-# Welcome to the code repository for the [Building Your Own Programming Language](https://frontendmasters.com/courses/programming-language/) course!
+# Welcome to the [Building Your Own Programming Language](https://frontendmasters.com/courses/programming-language/) course!
 
 ## Getting started
 
