@@ -18,7 +18,7 @@ describe(parse, () => {
     expect(parse(tokens)).toEqual(ast);
   });
 
-  it.skip('should return a token with the type of NumericLiteral for number tokens', () => {
+  it.skip('should return a token with the type of Identifier for name tokens', () => {
     const tokens = [{ type: 'Name', value: 'x' }];
 
     const ast = { type: 'Identifier', name: 'x' };
